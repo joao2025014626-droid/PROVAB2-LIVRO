@@ -181,9 +181,8 @@ export default function Home() {
   return (
     <View
       style={{
-
-        paddingLeft: 20,
-        paddingRight: 20,
+        flex: 1,
+        paddingHorizontal: 20,
         paddingTop: 50,
       }}
     >
@@ -191,29 +190,41 @@ export default function Home() {
         placeholder="Pesquisar produto"
         value={search}
         onChangeText={setSearch}
+        style={{ marginBottom: 12 }}
       />
 
+      <View style={{ height: 55, marginBottom: 12 }}>
+        <FlatList
+          horizontal
+          data={categories}
+          keyExtractor={(item) => item}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            alignItems: "center",
+          }}
+          renderItem={({ item }) => (
+            <CategoryButton
+              onPress={() => setCategory(item)}
+            >
+              <CategoryText>{item}</CategoryText>
+            </CategoryButton>
+          )}
+        />
+      </View>
+
       <FlatList
-        horizontal
-        data={categories}
-        keyExtractor={(item) => item}
-        showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <CategoryButton onPress={() => setCategory(item)}>
-            <CategoryText>{item}</CategoryText>
-          </CategoryButton>
-        )}
-      />
-      <FlatList
+        style={{ flex: 1 }}
         data={produtosFiltrados}
         keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={{
+          paddingBottom: 30,
+        }}
         renderItem={({ item }) => (
           <ProductCard>
             <ProductImage source={{ uri: item.image }} />
 
             <ProductInfo>
               <ProductTitle>{item.title}</ProductTitle>
-
               <ProductPrice>
                 R$ {item.price.toFixed(2)}
               </ProductPrice>
@@ -222,5 +233,5 @@ export default function Home() {
         )}
       />
     </View>
-  );
+  )
 }

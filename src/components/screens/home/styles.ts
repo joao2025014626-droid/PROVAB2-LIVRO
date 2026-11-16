@@ -7,7 +7,7 @@ export const Container = styled(SafeAreaView)`
 `;
 
 export const Header = styled.View`
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 `;
 
 export const ScreenTitle = styled.Text`
@@ -25,13 +25,13 @@ export const SearchInput = styled.TextInput`
 
 export const CategoryButton = styled.Pressable`
   background-color: #f7f2f2;
-  padding: 10px;
+  padding: 20px;
   margin-right: 8px;
   border-radius: 8px;
 `;
 
 export const CategoryText = styled.Text`
-  font-size: 14px;
+  font-size: 15px;
 `;
 
 export const ProductCard = styled.View`
@@ -66,5 +66,5 @@ export const ProductRating = styled.Text`
 
 export const EmptyText = styled.Text`
   text-align: center;
-  margin-top: 20px;
+  margin-top: 50px;
 `;

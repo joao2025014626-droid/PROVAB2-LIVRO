@@ -1,237 +1,72 @@
-import { useState } from "react";
-import { FlatList, View, Text, Image } from "react-native";
-
-
+import React, { useState } from 'react';
+import { FlatList } from 'react-native';
 import {
-  CategoryButton,
-  CategoryText,
-  ProductCard,
-  ProductImage,
-  ProductInfo,
-  ProductPrice,
-  ProductTitle,
-  SearchInput,
-} from "./styles";
+  Container,
+  Header,
+  Titulo,
+  Subtitulo,
+  CampoBusca,
+  Card,
+  NomeLivro,
+  Autor,
+  Mensagem,
+} from './styles';
 
-export default function Home() {
-  const [category, setCategory] = useState("todos");
-  const [search, setSearch] = useState("");
+const livros = [
+  { id: '1', title: 'Turma da Mônica', author: 'Mauricio de Sousa' },
+  { id: '2', title: 'Turma da Mônica Jovem', author: 'Mauricio de Sousa' },
+  { id: '3', title: 'Chico Bento', author: 'Mauricio de Sousa' },
+  { id: '4', title: 'Cebolinha', author: 'Mauricio de Sousa' },
+  { id: '5', title: 'Cascão', author: 'Mauricio de Sousa' },
+  { id: '6', title: 'Magali', author: 'Mauricio de Sousa' },
+  { id: '7', title: 'Menino Maluquinho', author: 'Ziraldo' },
+  { id: '8', title: 'Pererê', author: 'Ziraldo' },
+  { id: '9', title: 'Asterix', author: 'René Goscinny e Albert Uderzo' },
+  { id: '10', title: 'As Aventuras de Tintim', author: 'Hergé' },
+  { id: '11', title: 'Garfield', author: 'Jim Davis' },
+  { id: '12', title: 'Peanuts — Snoopy', author: 'Charles M. Schulz' },
+  { id: '13', title: 'Calvin e Haroldo', author: 'Bill Watterson' },
+  { id: '14', title: 'Mafalda', author: 'Quino' },
+  { id: '15', title: 'Luluzinha', author: 'Marjorie Henderson Buell' },
+];
 
-  const products = [
-    {
-      id: 1,
-      title: "Camiseta Esportiva",
-      price: 79.9,
-      category: "roupas",
-      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
-    },
-    {
-      id: 2,
-      title: "Tênis de Corrida",
-      price: 299.9,
-      category: "tênis",
-      image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-    },
-    {
-      id: 3,
-      title: "Boné Esportivo",
-      price: 59.9,
-      category: "acessórios",
-      image: "https://images.unsplash.com/photo-1521369909029-2afed882baee",
-    },
-    {
-      id: 4,
-      title: "Kit Academia",
-      price: 149.9,
-      category: "kits",
-      image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438",
-    },
-    {
-      id: 5,
-      title: "Camiseta Preta",
-      price: 69.9,
-      category: "roupas",
-      image: "https://images.unsplash.com/photo-1523398002811-999ca8dec234",
-    },
-    {
-      id: 6,
-      title: "Tênis Casual",
-      price: 249.9,
-      category: "tênis",
-      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772",
-    },
-    {
-      id: 7,
-      title: "Relógio Esportivo",
-      price: 199.9,
-      category: "acessórios",
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-    },
-    {
-      id: 8,
-      title: "Kit Corrida",
-      price: 349.9,
-      category: "kits",
-      image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5",
-    },
-    {
-      id: 9,
-      title: "Moletom Esportivo",
-      price: 159.9,
-      category: "roupas",
-      image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
-    },
-    {
-      id: 10,
-      title: "Tênis Esportivo",
-      price: 399.9,
-      category: "tênis",
-      image: "https://images.unsplash.com/photo-1552346154-21d32810aba3",
-    },
-    {
-      id: 11,
-      title: "Mochila Esportiva",
-      price: 129.9,
-      category: "acessórios",
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62",
-    },
-    {
-      id: 12,
-      title: "Kit Treino",
-      price: 219.9,
-      category: "kits",
-      image: "https://images.unsplash.com/photo-1517838277536-f5f99be50106",
-    },
-    {
-      id: 13,
-      title: "Short Esportivo",
-      price: 89.9,
-      category: "roupas",
-      image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b",
-    },
-    {
-      id: 14,
-      title: "Tênis Branco",
-      price: 279.9,
-      category: "tênis",
-      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772",
-    },
-    {
-      id: 15,
-      title: "Óculos Esportivo",
-      price: 99.9,
-      category: "acessórios",
-      image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
-    },
-    {
-      id: 16,
-      title: "Kit Academia Completo",
-      price: 499.9,
-      category: "kits",
-      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48",
-    },
-    {
-      id: 17,
-      title: "Regata Esportiva",
-      price: 64.9,
-      category: "roupas",
-      image: "https://images.unsplash.com/photo-1506629905607-d9c297d7b3d0",
-    },
-    {
-      id: 18,
-      title: "Tênis para Academia",
-      price: 329.9,
-      category: "tênis",
-      image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5",
-    },
-    {
-      id: 19,
-      title: "Boné Preto",
-      price: 49.9,
-      category: "acessórios",
-      image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b",
-    },
-    {
-      id: 20,
-      title: "Kit Esportivo",
-      price: 299.9,
-      category: "kits",
-      image: "https://images.unsplash.com/photo-1518611012118-696072aa579a",
-    },
-  ];
+const cores = ['blue', 'green', 'red'];
 
-  const categories = [
-    "todos",
-    "roupas",
-    "tênis",
-    "acessórios",
-    "kits",
-  ];
+export default function Index() {
+  const [busca, setBusca] = useState('');
 
-  const produtosFiltrados = products.filter((product) => {
-    const nome = product.title.toLowerCase();
-    const pesquisa = search.toLowerCase();
-
-    return (
-      nome.includes(pesquisa) &&
-      (category === "todos" || product.category === category)
-    );
-  });
+  const livrosFiltrados = livros.filter((livro) =>
+    livro.title.toLowerCase().includes(busca.toLowerCase())
+  );
 
   return (
-    <View
-      style={{
-        flex: 1,
-        paddingHorizontal: 20,
-        paddingTop: 50,
-      }}
-    >
-      <SearchInput
-        placeholder="Pesquisar produto"
-        value={search}
-        onChangeText={setSearch}
-        style={{ marginBottom: 12 }}
-      />
+    <Container>
+      <Header>
+        <Titulo>📖 LeituraViva</Titulo>
+        <Subtitulo>Library Loan System</Subtitulo>
+      </Header>
 
-      <View style={{ height: 55, marginBottom: 12 }}>
-        <FlatList
-          horizontal
-          data={categories}
-          keyExtractor={(item) => item}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            alignItems: "center",
-          }}
-          renderItem={({ item }) => (
-            <CategoryButton
-              onPress={() => setCategory(item)}
-            >
-              <CategoryText>{item}</CategoryText>
-            </CategoryButton>
-          )}
-        />
-      </View>
+      <CampoBusca
+        placeholder="Pesquisar livro..."
+        placeholderTextColor="#777"
+        value={busca}
+        onChangeText={setBusca}
+      />
 
       <FlatList
-        style={{ flex: 1 }}
-        data={produtosFiltrados}
-        keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={{
-          paddingBottom: 30,
-        }}
-        renderItem={({ item }) => (
-          <ProductCard>
-            <ProductImage source={{ uri: item.image }} />
-
-            <ProductInfo>
-              <ProductTitle>{item.title}</ProductTitle>
-              <ProductPrice>
-                R$ {item.price.toFixed(2)}
-              </ProductPrice>
-            </ProductInfo>
-          </ProductCard>
+        data={livrosFiltrados}
+        keyExtractor={(item) => item.id}
+        keyboardShouldPersistTaps="handled"
+        renderItem={({ item, index }) => (
+          <Card style={{ backgroundColor: cores[index % 3] }}>
+            <NomeLivro>{item.title}</NomeLivro>
+            <Autor>{item.author}</Autor>
+          </Card>
         )}
+        ListEmptyComponent={
+          <Mensagem>Nenhum livro encontrado.</Mensagem>
+        }
       />
-    </View>
-  )
+    </Container>
+  );
 }

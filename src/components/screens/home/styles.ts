@@ -1,70 +1,58 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
-export const Container = styled(SafeAreaView)`
+export const Container = styled.SafeAreaView`
   flex: 1;
-  padding: 20px;
+  background-color: white;
 `;
 
 export const Header = styled.View`
-  margin-bottom: 25px;
-`;
-
-export const ScreenTitle = styled.Text`
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-export const SearchInput = styled.TextInput`
-  height: 45px;
-  background-color: #ffffff;
-  padding: 10px;
-  border-radius: 8px;
-`;
-
-export const CategoryButton = styled.Pressable`
-  background-color: #f7f2f2;
+  background-color: blue;
   padding: 20px;
-  margin-right: 8px;
-  border-radius: 8px;
+  align-items: center;
 `;
 
-export const CategoryText = styled.Text`
-  font-size: 15px;
-`;
-
-export const ProductCard = styled.View`
-
-  margin: 5px;
-`;
-
-export const ProductImage = styled.Image`
-  width: 100%;
-  height: 150px;
-  border-radius: 8px;
-`;
-
-export const ProductInfo = styled.View`
-  padding: 5px;
-`;
-
-export const ProductTitle = styled.Text`
-  font-size: 15px;
+export const Titulo = styled.Text`
+  font-size: 26px;
   font-weight: bold;
+  color: white;
 `;
 
-export const ProductPrice = styled.Text`
-  font-size: 16px;
-  margin-top: 5px;
+export const Subtitulo = styled.Text`
+  font-size: 14px;
+  color: white;
 `;
 
-export const ProductRating = styled.Text`
-  font-size: 12px;
-  color: #f8f1f1;
+export const CampoBusca = styled.TextInput`
+  margin: 15px;
+  padding: 15px;
+  border-width: 2px;
+  border-color: blue;
+  font-size: 18px;
+  color: black;
 `;
 
-export const EmptyText = styled.Text`
+export const Card = styled.View`
+  margin: 10px 15px;
+  padding: 25px;
+  min-height: 130px;
+  justify-content: center;
+`;
+
+export const NomeLivro = styled.Text`
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+`;
+
+export const Autor = styled.Text`
+  font-size: 17px;
+  color: white;
+  margin-top: 10px;
+`;
+
+export const Mensagem = styled.Text`
   text-align: center;
-  margin-top: 50px;
+  margin: 20px;
+  font-size: 18px;
+  color: red;
 `;
